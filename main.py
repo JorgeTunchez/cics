@@ -5,25 +5,25 @@ import os
 from functions import *
 
 # parametros
-# fechaActual = datetime.date.today().isoformat()
-fechaActual = '2025-12-30'
+fechaActual = datetime.date.today().isoformat()
+# fechaActual = '2025-12-30'
 cantidadLeer = 50
+nombreDirectorio = 'Reportes_CICS_TEST'
 
 
-#cantidadRegFechaActual = validarFechaSegmento(fechaActual)
+#cantidadRegFechaActual = validarCargaFecha(fechaActual)
 cantidadRegFechaActual = 0
 if cantidadRegFechaActual == 0:
 
-    # generar listado de archivos en carpeta Reportes_CICS
-    # archivos = os.listdir('Reportes_CICS')
-    archivos = os.listdir('Reportes_CICS_TEST')
+    # generar listado de archivos en carpeta Reportes
+    archivos = os.listdir(nombreDirectorio)
 
     for i in range(len(archivos)):
         archivos[i] = archivos[i].upper()
 
         print(f"Archivo en analisis: {archivos[i]}")
-    
-        archivo_path = os.path.join('Reportes_CICS', archivos[i])
+
+        archivo_path = os.path.join(nombreDirectorio, archivos[i])
         # Leer el contenido del archivo solo las primera 150 lineas
         with open(archivo_path, 'r') as file:
             texto = ''.join([next(file) for _ in range(cantidadLeer)])       
@@ -32,6 +32,7 @@ if cantidadRegFechaActual == 0:
         lineas = extraer_lineas(texto)
         contador = 0
         contadorSegmentos = 0
+        contadorSegmentosActivos = 0
         diccionarioSegmentos = {}
 
         for linea in lineas:
@@ -42,6 +43,7 @@ if cantidadRegFechaActual == 0:
                 arrTitulos = extrearTitulo_segmento(linea)
                 for titulo in arrTitulos:
                     contadorSegmentos += 1
+                    contadorSegmentosActivos += 1
                     diccionarioSegmentos[contadorSegmentos] = {'titulo': titulo, 'detalles': []}
 
 
@@ -52,6 +54,8 @@ if cantidadRegFechaActual == 0:
                     # al agregar los detalles, agregar como tupla campo: valor
                     diccionarioSegmentos[contadorSegmentos]['detalles'].append({campo: valor})
 
+            if tipoLinea == 'FD':
+                contadorSegmentosActivos = 0  # resetear contador de segmentos activos
             
             if contador < 10:   
                 print(f"0{contador} | {tipoLinea} |{linea}")

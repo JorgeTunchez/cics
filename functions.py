@@ -84,8 +84,20 @@ def identificar_tipo_linea(linea):
     else:
         return 'DE'  #detalle
     
+
+def validarCargaFecha(fecha_str):
+    #validar si en base de datos ya existe un segmento con la misma 
+    conn = conectar_base_datos()
+
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM validacion_sistema WHERE fecha = ?", (fecha_str))   
+    count = cursor.fetchone()[0]
+    conn.close()    
+    return count
+
+
 # Validar si ya existe un segmento con la misma fecha
-def validarFecha(nombreArchivo, fecha_str):
+def validarArchivoFecha(nombreArchivo, fecha_str):
     #validar si en base de datos ya existe un segmento con la misma 
     conn = conectar_base_datos()
 
@@ -102,18 +114,17 @@ def insertarSegmentos(fechaActual, nombreArchivo, diccionarioSegmentos):
     #crear conexion con base de datos SQL 
     conn_sqlserver = conectar_base_datos()
     cursor_sqlserver = conn_sqlserver.cursor()  
-    #crear tabla segmentos si no existe
-    cursor_sqlserver.execute('''IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='validacion_sistema' AND xtype='U')
-            CREATE TABLE validacion_sistema       
+    cursor_sqlserver.execute('''IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='segmentos' AND xtype='U')
+            CREATE TABLE validacion_sistema  
             (id INT IDENTITY(1,1) PRIMARY KEY,
-             archivo NVARCHAR(255),
-             segmento NVARCHAR(255),
-             campo NVARCHAR(255),
-             valor NVARCHAR(MAX),
-             fecha DATE)''')    
+             archivo NVARCHAR(255), 
+                segmento NVARCHAR(255),
+                campo NVARCHAR(255),
+                valor NVARCHAR(MAX),
+                fecha DATE,
+                INDEX IX_validacion_sistema_fecha (fecha))''')
     conn_sqlserver.commit()
-
-    cantidadRegFechaActual = validarFecha(nombreArchivo, fechaActual)
+    cantidadRegFechaActual = validarArchivoFecha(nombreArchivo, fechaActual)
     print( f"Cantidad de registros para la fecha {fechaActual}: {cantidadRegFechaActual}" )
 
     if cantidadRegFechaActual > 0:
