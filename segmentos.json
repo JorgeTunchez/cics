@@ -111,31 +111,15 @@
     },
     "2": {
         "titulo": "Monitoring",
-        "detalles": []
-    },
-    "3": {
-        "titulo": "Statistics",
         "detalles": [
             {
                 "Monitoring": "ON"
             },
             {
-                "Statistics Recording": "OFF"
-            },
-            {
                 "Exception Class": "OFF"
             },
             {
-                "Statistics Last Reset Date and Time": "12/09/2025"
-            },
-            {
-                "02": "15:27"
-            },
-            {
                 "Performance Class": "ON"
-            },
-            {
-                "Elapsed Time Since Reset": "20:44:46"
             },
             {
                 "Resource Class": "OFF"
@@ -144,25 +128,13 @@
                 "Identity Class": "OFF"
             },
             {
-                "Statistics Interval": "24:00:00"
-            },
-            {
                 "Next Statistics Collection": "00:00:00"
             },
             {
                 "Data Compression Option": "YES"
             },
             {
-                "Statistics End-of-Day Time": "00:00:00"
-            },
-            {
                 "Application Naming": "NO"
-            },
-            {
-                "Statistics Start Date and Time": "12/09/2025"
-            },
-            {
-                "02": "15:27.2918"
             },
             {
                 "RMI Option": "YES"
@@ -174,13 +146,7 @@
                 "Converse Option": "NO"
             },
             {
-                "Statistics SMF Writes Suppressed": "0"
-            },
-            {
                 "Syncpoint Option": "NO"
-            },
-            {
-                "Statistics SMF Errors": "0"
             },
             {
                 "Time Option": "GMT"
@@ -189,7 +155,114 @@
                 "Frequency": "00:00:00"
             },
             {
-                "Current tasks at last attach": "5"
+                "MCT Program Name": "DFHMCTAC"
+            },
+            {
+                "DPL Resource Limit": "0"
+            },
+            {
+                "File Resource Limit": "8"
+            },
+            {
+                "Tsqueue Resource Limit": "8"
+            },
+            {
+                "Urimap Resource Limit": "0"
+            },
+            {
+                "Webservice Resource Limit": "0"
+            },
+            {
+                "System transactions ended": "7,586"
+            },
+            {
+                "Performance Class Records": "9,319,345"
+            },
+            {
+                "Total transaction CPU time on CP": "0000:36:57.283211"
+            },
+            {
+                "Monitoring SMF Records": "1,164,919"
+            },
+            {
+                "Monitoring SMF Records Compressed": "1,164,918"
+            },
+            {
+                "Percentage of SMF Records Compressed": "100.00%"
+            },
+            {
+                "Internal Trace Status": "STARTED"
+            },
+            {
+                "Auxiliary Trace Status": "STOPPED"
+            },
+            {
+                "GTF Trace Status": "STOPPED"
+            },
+            {
+                "Internal Trace Table Size": "4,096K"
+            },
+            {
+                "Current Auxiliary Dataset": "A"
+            }
+        ]
+    },
+    "3": {
+        "titulo": "Statistics",
+        "detalles": [
+            {
+                "Statistics Recording": "OFF"
+            },
+            {
+                "Statistics Last Reset Date and Time": "12/09/2025"
+            },
+            {
+                "02": "15:27"
+            },
+            {
+                "Elapsed Time Since Reset": "20:44:46"
+            },
+            {
+                "Statistics Interval": "24:00:00"
+            },
+            {
+                "Statistics End-of-Day Time": "00:00:00"
+            },
+            {
+                "Statistics Start Date and Time": "12/09/2025"
+            },
+            {
+                "02": "15:27.2918"
+            },
+            {
+                "MXT value at last attach": "450"
+            },
+            {
+                "Time last user transaction attached": "12/09/2025"
+            },
+            {
+                "23": "00:12.3873"
+            },
+            {
+                "Time last user transaction ended": "12/09/2025"
+            },
+            {
+                "23": "00:12.2158"
+            },
+            {
+                "Total transaction CPU offload on CP": "0000:00:00.000000"
+            },
+            {
+                "Average Compressed Record Length": "5,616"
+            },
+            {
+                "Average Record Compression Percent": "82.24%"
+            },
+            {
+                "System Dumps Suppressed": "209"
+            },
+            {
+                "Transaction Dumps Suppressed": "183"
             }
         ]
     }

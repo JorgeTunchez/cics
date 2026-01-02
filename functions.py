@@ -44,7 +44,6 @@ def extraer_campos(texto):
     # Expresión regular más robusta:
     # Captura "campo" seguido de ":" y luego "valor"
     patron = re.compile(r'([^:]+?)\s*:\s*([^\s].*?)(?=\s{2,}[^:]+:|$)')
-
     campos = []
 
     for linea in texto.splitlines():
@@ -58,7 +57,6 @@ def extraer_campos(texto):
             campo = campo.strip().replace('.', '').replace('\t', '')
             campo = re.sub(r'\s+', ' ', campo)  # Reemplazar múltiples espacios por uno solo
             campo = campo.strip()
-    
             valor = valor.strip()
             campos.append((campo, valor))
     return campos
@@ -68,8 +66,9 @@ def extraer_campos(texto):
 def identificar_tipo_linea(linea):
     if not linea:
         return 'VA'  #vacia  
-    elif re.search(r'\bPAGE\b', linea, re.IGNORECASE):
-        return 'EN' #encabezado
+    # encabezado puede contener la palabra Applid o PAGE
+    elif re.match(r'.*Applid.*', linea) or re.match(r'.*PAGE.*', linea):
+        return 'EN'  #encabezado
     elif re.match(r'-[A-Z][a-z]', linea):
         return 'TS'  #titulo segmento
     elif re.match(r'0[A-Z][a-z]', linea):
